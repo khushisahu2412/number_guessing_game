@@ -34,6 +34,6 @@ while read GUESS; do
       echo "You guessed it in $NUMBER_OF_GUESSES tries. The secret number was $SECRET_NUMBER. Nice job!"
       $PSQL "UPDATE users SET games_played = games_played + 1, best_game = CASE WHEN best_game IS NULL OR $NUMBER_OF_GUESSES < best_game THEN $NUMBER_OF_GUESSES ELSE best_game END WHERE user_id = $USER_ID" > /dev/null
       break
-    fi
+    fi 
   fi
 done
