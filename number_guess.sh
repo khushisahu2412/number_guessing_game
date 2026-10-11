@@ -9,8 +9,7 @@ USER_DATA=$($PSQL "SELECT user_id || '|' || games_played || '|' || COALESCE(best
 
 if [[ -z $USER_DATA ]]; then
   USER_ID=$($PSQL "INSERT INTO users(username) VALUES('$USERNAME') RETURNING user_id")
-  echo "W
-  elcome, $USERNAME! It looks like this is your first time here."
+  echo "Welcome, $USERNAME! It looks like this is your first time here."
 else
   IFS='|' read -r USER_ID GAMES_PLAYED BEST_GAME <<< "$USER_DATA"
   echo "Welcome back, $USERNAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses."
